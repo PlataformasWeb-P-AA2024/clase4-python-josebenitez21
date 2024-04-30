@@ -1,18 +1,22 @@
+"""
 
-#[]
-archivo = open("data/atp_tennis.csv","r")
+"""
+
+
+archivo = open("data/atp_tennis.csv", "r")
+
 lineas = archivo.readlines()
+print(len(lineas))
 
-lineas = [l.split ("|") for l in lineas]
 
+lineas = [l.split("|") for l in lineas]
+contador = 0
 for x in lineas:
-    cadena = "Torneo: %s\nGanador: %s" % (x[9],x[9])
-print(cadena)
-   
+    
+    cadena = """<b>Torneo:</b> %s<br> <b>Ganador:</b> %s""" % (x[0], x[9])
+    print(cadena)
 
-cadena = """ <b>Torneo:</b> %s  <br><b>Ganador:</b> %s""" % (x[9],x[9])
-print(cadena)
-
-archivo_generado = open("data/%s.html" % (x[9]),"w")
-archivo_generado.writelines("%s\n" % (cadena))
-archivo_generado.close()
+    archivo_generado = open("data/%s%s%d.html" % (x[9],x[1] ,contador), "w")
+    archivo_generado.writelines("%s\n" % (cadena))
+    archivo_generado.close()
+    contador+=1
